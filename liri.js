@@ -30,6 +30,7 @@ getTweets();
 	} 
 }; 
 
+//Twitter functionality
 function getTweets() {
 	var params = {
 		screen_name: "NatlParkService",
@@ -48,6 +49,7 @@ T.get('statuses/user_timeline', params, function(error, tweets, response) {
 
 } 
 
+//Spotify functionality
 function getSpotify(input) {
 	var spotify = new Spotify({
 		id: '2d91b2d12fb84821b02b52b2d3808eb3',
@@ -80,7 +82,7 @@ if (input) {
 		query: input	
 	}, function(err, data) {
 		if (err) {
-            return console.log("song cannot be found " + err);
+            return console.log("not found " + err);
         }
             console.dir("Artist: " + data.tracks.items[0].album.artists[0].name); 
             console.log('--------------');
@@ -95,22 +97,21 @@ if (input) {
 	} 
 } 
 
+//Movie functionality
 function getMovie() {
 
 var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&plot=short&apikey=40e9cece";
-
 console.dir(queryUrl);
-
 request(queryUrl, function(error, response, body) {
 
  if (!error && response.statusCode === 200) {
 
  	var omdb = JSON.parse(body, null, 2);
 
- 	console.dir("Title of the movie: " + omdb.Title);
- 	console.dir("Year the movie came out: " + omdb.Year);
+ 	console.dir("Title: " + omdb.Title);
+ 	console.dir("Year: " + omdb.Year);
  	console.dir("imdbRating: " + omdb.imdbRating);
- 	console.dir("Rotten Tomatoes Rating of the movie: " + omdb.Ratings[1].Value);
+ 	console.dir("Rotten Tomatoes Rating: " + omdb.Ratings[1].Value);
  	console.dir("Language: " + omdb.Language);
  	console.dir("Plot: " + omdb.Plot);
  	console.dir("Actors: " + omdb.Actors);
